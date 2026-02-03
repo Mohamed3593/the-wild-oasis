@@ -3,7 +3,7 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import {Input,Select} from "../../ui/Input";
-import { useAllBookings } from "./useAllBookings";
+
 import Spinner from "../../ui/Spinner";
 import Checkbox from "../../ui/Checkbox";
 import useGuests from "../../guests/useGuests";
@@ -17,11 +17,11 @@ function BookingForm({onCloseButton}) {
   const { register, handleSubmit, formState, reset, watch ,control} =
     useForm();
     const { addNewBooking, isLoading } = useAddBooking();
-  const { Allbookings, isLoading: isLoading1 } = useAllBookings();
+
   const { guests, isLoading: isLoading2 } = useGuests();
   const { cabins, isLoading: isLoading3 } = useCabins();
   const { settings, isLoading: isLoading4 } = useSettings();
-  if (isLoading1 || isLoading2 || isLoading3 || isLoading4) return <Spinner />;
+  if (isLoading2 || isLoading3 || isLoading4) return <Spinner />;
   const guestNames = guests?.map((guest) => guest.fullName) || [];
   const cabinNames = cabins?.map((cabin) => cabin.name) || [];
 
@@ -42,6 +42,7 @@ function BookingForm({onCloseButton}) {
     const totalPrice = extrasPrice + cabinPrice;
     // ✅ استخدم destructuring عشان تشيل الحاجات اللي مش عايزها
     const { cabin, guestName, ...restData } = data;
+    console.log(cabin, guestName);
     const finalData = {
       ...restData,
       cabinPrice,

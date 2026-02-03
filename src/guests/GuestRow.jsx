@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 
-import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import { HiPencil, HiTrash } from "react-icons/hi2";
 
 import Modal from "../ui/Modal";
 

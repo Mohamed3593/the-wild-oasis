@@ -9,13 +9,9 @@ function useGuests() {
     const page = !searchParams.get("page")
         ? 1
         : Number(searchParams.get("page"));
-    const {
-        data: { data: guests, count } = {},
-        isLoading,
-        error,
-    } = useQuery({
-        queryKey: ["guests", page],
-        queryFn: () => getGuests({ page }),
+    const { data: { data: guests, count } = {}, isLoading } = useQuery({
+      queryKey: ["guests", page],
+      queryFn: () => getGuests({ page }),
     });
     const pageCount = Math.ceil((count || 0) / pageSize);
     if (page < pageCount) {
