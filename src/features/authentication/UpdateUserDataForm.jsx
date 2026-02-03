@@ -8,15 +8,17 @@ import Input from "../../ui/Input";
 
 import { useUser } from "./useUser";
 import { useUpdateUser } from "./useUpdateUser";
+import Spinner from "../../ui/Spinner";
 
 function UpdateUserDataForm() {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
-  const { user } = useUser();
-     const email = user.email;
-     const currentFullName = user.user_metadata?.fullName ?? "";
-    const { isUpdating,updateUser}=useUpdateUser()
-    const [fullName, setFullName] = useState(currentFullName);
-    const [avatar, setAvatar] = useState(null);
+  const { user, isLoading } = useUser();
+  const email = user.email;
+  const currentFullName = user.user_metadata?.fullName ?? "";
+  const { isUpdating, updateUser } = useUpdateUser();
+  const [fullName, setFullName] = useState(currentFullName);
+  const [avatar, setAvatar] = useState(null);
+  if (isLoading) return <Spinner />;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -46,7 +48,7 @@ function UpdateUserDataForm() {
           id="avatar"
           accept="image/*"
           onChange={(e) => setAvatar(e.target.files[0])}
-          disabled={isUpdating}
+          disabled={true}
         />
       </FormRow>
       <FormRow>
@@ -55,7 +57,7 @@ function UpdateUserDataForm() {
         </Button>
         <Button>Update account</Button>
       </FormRow>
-    </Form> 
+    </Form>
   );
 }
 

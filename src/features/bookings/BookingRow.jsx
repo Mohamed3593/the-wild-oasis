@@ -46,20 +46,23 @@ const Amount = styled.div`
   font-weight: 500;
 `;
 
-function BookingRow({
-  booking: {
-    id: bookingId,
 
+function BookingRow({ booking }) {
+  // ✅ استخدم optional chaining عشان تتجنب errors
+  const {
+    id: bookingId,
     startDate,
     endDate,
     numNights,
-
     totalPrice,
     status,
-    guests: { fullName: guestName, email },
-    cabins: { name: cabinName },
-  },
-}) {
+    guests,
+    cabins,
+  } = booking;
+
+  const guestName = guests?.fullName || "Unknown Guest";
+  const email = guests?.email || "No Email";
+  const cabinName = cabins?.name || "Unknown Cabin";
   const { deleteBooking } = useDeleteBooking();
   const statusToTagName = {
     unconfirmed: "blue",

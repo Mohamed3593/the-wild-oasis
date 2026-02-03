@@ -1,3 +1,4 @@
+import AddBooking from "../features/bookings/AddBooking";
 import DashboardFilter from "../features/dashboard/DashboardFilter";
 import DashboardLayout from "../features/dashboard/DashboardLayout";
 import Heading from "../ui/Heading";
@@ -8,10 +9,10 @@ function Dashboard() {
     <>
       <Row type="hor">
         <Heading as="h1">Dashboard</Heading>
+        <AddBooking />
         <DashboardFilter />
       </Row>
       <DashboardLayout />
-
     </>
   );
 }

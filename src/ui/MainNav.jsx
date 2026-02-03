@@ -7,7 +7,7 @@ import {
   HiOutlineUsers,
   HiOutlineCog,
 } from "react-icons/hi";
-  import { HiOutlineHomeModern } from "react-icons/hi2";
+  import { HiOutlineHomeModern, HiOutlineUserPlus } from "react-icons/hi2";
 
 const NavList = styled.ul`
   display: flex;
@@ -58,23 +58,44 @@ function MainNav() {
     <nav>
       <NavList>
         <li>
-          <StyledNavLink to="/dashboard"><HiOutlineHome/>Dashboard</StyledNavLink>
+          <StyledNavLink to="/dashboard">
+            <HiOutlineHome />
+            Dashboard
+          </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/bookings"><HiOutlineCalendar/>Booking</StyledNavLink>
+          <StyledNavLink to="/bookings">
+            <HiOutlineCalendar />
+            Booking
+          </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/cabins"><HiOutlineHomeModern/>Cabins</StyledNavLink>
+          <StyledNavLink to="/cabins">
+            <HiOutlineHomeModern />
+            Cabins
+          </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/users"><HiOutlineUsers/>Users</StyledNavLink>
+          <StyledNavLink to="/users">
+            <HiOutlineUsers />
+            Users
+          </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/settings"><HiOutlineCog/>Settings</StyledNavLink>
+          <StyledNavLink to="/settings">
+            <HiOutlineCog />
+            Settings
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/guests">
+            <HiOutlineUserPlus />
+            Guests
+          </StyledNavLink>
         </li>
       </NavList>
     </nav>
-  )
+  );
 }
 
 export default MainNav
