@@ -69,14 +69,25 @@ function BookingForm({onCloseButton}) {
           <option key={index} value={e} />
         ))}
       </datalist>
-      <Form onSubmit={handleSubmit(onSubmit)} type={onCloseButton ? "modal" : "regular"} >
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        type={onCloseButton ? "modal" : "regular"}
+      >
         <FormRow label="guest name" error={errors?.guestName?.message}>
           <Input
             disabled={isLoading}
             type="search"
             id="guestName"
             list="guestsList"
-            {...register("guestName", { required: "this feild is required" })}
+            {...register("guestName", {
+              required: "this field is required",
+              validate: (value) => {
+                if (!guestNames.includes(value)) {
+                  return "Please select a guest from the list";
+                }
+                return true;
+              },
+            })}
           />
         </FormRow>
         <FormRow label="cabin" error={errors?.cabin?.message}>
@@ -85,7 +96,15 @@ function BookingForm({onCloseButton}) {
             type="search"
             id="cabin"
             list="cabinsList"
-            {...register("cabin", { required: "this feild is required" })}
+            {...register("cabin", {
+              required: "this field is required",
+              validate: (value) => {
+                if (!cabinNames.includes(value)) {
+                  return "Please select a cabin from the list";
+                }
+                return true;
+              },
+            })}
           />
         </FormRow>
 
@@ -205,7 +224,12 @@ function BookingForm({onCloseButton}) {
         </FormRow>
         <FormRow>
           {/* type is an HTML attribute! */}
-          <Button disabled={isLoading} variation="secondary" type="reset" onClick={onCloseButton}>
+          <Button
+            disabled={isLoading}
+            variation="secondary"
+            type="reset"
+            onClick={onCloseButton}
+          >
             Cancel
           </Button>
           <Button disabled={isLoading}>Create new user</Button>

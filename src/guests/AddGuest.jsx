@@ -1,7 +1,7 @@
 import Button from "../ui/Button";
 
 import Modal from "../ui/Modal"
-import AddGuestForm from "./addGusetForm";
+import AddGuestForm from "./AddGusetForm";
 function AddGuest() {
     return (
             <div>

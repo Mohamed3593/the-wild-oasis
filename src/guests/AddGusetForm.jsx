@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+// import styled from "styled-components";
+// import { useState, useRef, useEffect } from "react";
 
 
 import { useAddGuest } from "./useAddGuest";
@@ -177,16 +179,19 @@ const nationalities = [
   "Zimbabwe",
 ];
 
-function AddGuestForm({onCloseButton,guestToEdit={}}) {
+function AddGuestForm({ onCloseButton, guestToEdit = {} }) {
+
   const { addGuest, isLoading } = useAddGuest()
-  const{editGuest,isLoading:isLoading2}=useUpdateGuest()
+  const { editGuest, isLoading: isLoading2 } = useUpdateGuest()
   const { id: guestId, ...editValues } = guestToEdit
   const isEditSesstion = Boolean(guestId)
   const { register, handleSubmit, formState, reset } = useForm({
     defaultValues: isEditSesstion ? editValues : {},
   });
   const { errors } = formState;
-  const isWorking=isLoading||isLoading2
+  const isWorking = isLoading || isLoading2
+ 
+
   function onSubmit(data) {
     console.log("guestId:", guestId);
     console.log("guestToEdit:", guestToEdit);
@@ -260,14 +265,26 @@ function AddGuestForm({onCloseButton,guestToEdit={}}) {
         <FormRow label="Nationality" error={errors?.nationality?.message}>
           <Input
             disabled={isWorking}
-            type="search"
-            list="nationalityList"
+            type="text"
             id="nationality"
+            list="nationalityList"
             {...register("nationality", {
               required: "this feild is required",
+              validate: (value) => {
+                if (!nationalities.includes(value)) {
+                  return "Please select a nationality from the list";
+                }
+                return true;
+              },
             })}
           />
         </FormRow>
+
+        <datalist id="nationalityList">
+          {nationalities.map((e, index) => (
+            <option key={index} value={e} />
+          ))}
+        </datalist>
 
         <FormRow>
           {/* type is an HTML attribute! */}
@@ -279,7 +296,9 @@ function AddGuestForm({onCloseButton,guestToEdit={}}) {
           >
             Cancel
           </Button>
-          <Button disabled={isWorking}>{isEditSesstion? "edit the Guest":"Create new user"}</Button>
+          <Button disabled={isWorking}>
+            {isEditSesstion ? "edit the Guest" : "Create new user"}
+          </Button>
         </FormRow>
       </Form>
     </>

@@ -178,6 +178,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.2); /* يظهر شوية عند الـ hover */
 }
+
 input,
 button,
 textarea,
@@ -206,6 +207,18 @@ textarea:focus,
 select:focus {
   outline: 2px solid var(--color-brand-600);
   outline-offset: -1px;
+}
+
+/* Styling datalist options */
+datalist {
+  display: none;
+}
+
+datalist option {
+  background-color: var(--color-grey-0);
+  color: var(--color-grey-700);
+  padding: 0.8rem 1.2rem;
+  border: 1px solid var(--color-grey-300);
 }
 
 /* Parent selector, finally 😃 */

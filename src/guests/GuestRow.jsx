@@ -8,7 +8,7 @@ import Modal from "../ui/Modal";
 
 import Table from "../ui/Table";
 import Menus from "../ui/Menus";
-import AddGuestForm from "./addGusetForm";
+import AddGuestForm from "./AddGusetForm";
 import { useDeleteGuest } from "./useDeleteGuest";
 import ConfirmDelete from "../ui/ConfirmDelete";
 
